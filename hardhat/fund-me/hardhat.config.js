@@ -15,26 +15,38 @@ const COINMARKETCAP_API_KEY = process.env.COINMARKETCAP_API_KEY || "0xKey";
 
 module.exports = {
   solidity: "0.8.7",
+  defaultNetworks: "hardhat",
   networks: {
+    hardhat: {
+      chainId: 31337,
+      // gasPrice: 130000000000,
+    },
     goerli: {
       url: GOERLI_RPC_URL,
       accounts: [GOERLI_PRIVATE_KEY],
       chainId: 5,
-    },
-    localhost: {
-      url: LOCALHOST_RPC_URL,
-      chainId: 31337,
+      blockConfimation: 6,
     },
   },
-  solidity: "0.8.17",
+  solidity: {
+    compilers: [
+      {
+        version: "^0.8.7",
+      },
+      {
+        version: "^0.6.6",
+      },
+    ],
+  },
   etherscan: {
     apiKey: ETHERSCAN_API_KEY,
+    // customChains: [], // uncomment this line if you are getting a TypeError: customChains is not iterable
   },
   gasReporter: {
     enabled: false,
+    currency: "USD",
     outputFile: "gas-report.txt",
     noColors: true,
-    currency: "USD",
-    coinmarketcap: COINMARKETCAP_API_KEY,
+    // coinmarketcap: COINMARKETCAP_API_KEY,
   },
 };
