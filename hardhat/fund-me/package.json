@@ -4,6 +4,7 @@
   "description": "",
   "scripts": {
     "deploy": "pnpm exec hardhat deploy",
+    "goerli": "pnpm exec hardhat deploy --network goerli",
     "compile": "pnpm exec hardhat compile",
     "node-start": "pnpm exec hardhat node",
     "coverage": "pnpm exec hardhat coverage",
