@@ -17,7 +17,7 @@ async function main() {
 
   const currentFavoriteNumber = await contract.retrieve();
   const transactionResponse = await contract.store("7");
-  const transactionReceipt = await transactionResponse.wait(1);
+  await transactionResponse.wait(1);
   const updatedFavoriteNumber = await contract.retrieve();
   console.log(currentFavoriteNumber.toString());
   console.log(updatedFavoriteNumber.toString());
