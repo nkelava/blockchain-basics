@@ -8,3 +8,4 @@ cache
 artifacts
 gas-report.txt
 coverage.json
+.vscode
