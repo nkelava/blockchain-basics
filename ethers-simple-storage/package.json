@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "compile": "pnpm solcjs --bin --abi --include-path node_modules/ --base-path . -o . SimpleStorage.sol"
+    "compile": "pnpm solcjs --bin --abi --include-path node_modules/ --base-path . -o . SimpleStorage.sol",
+    "deploy": "node deploy.js"
   },
   "dependencies": {
     "dotenv": "^16.0.3",
