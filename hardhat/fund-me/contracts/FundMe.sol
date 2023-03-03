@@ -9,19 +9,20 @@ error NotOwner();
 contract FundMe {
   using PriceConverter for uint256;
 
-  mapping(address => uint256) public addressToAmountFunded;
   address[] public funders;
-
   address public i_owner;
+  AggregatorV3Interface public i_priceFeed;
   uint256 public constant MINIMUM_USD = 50 * 10 ** 18;
+  mapping(address => uint256) public addressToAmountFunded;
 
-  constructor() {
+  constructor(address priceFeedAddress) {
     i_owner = msg.sender;
+    i_priceFeed = AggregatorV3Interface(priceFeedAddress);
   }
 
   function fund() public payable {
     require(
-      msg.value.getConversionRate() >= MINIMUM_USD,
+      msg.value.getConversionRate(i_priceFeed) >= MINIMUM_USD,
       "You need to spend more ETH!"
     );
     addressToAmountFunded[msg.sender] += msg.value;
@@ -29,10 +30,7 @@ contract FundMe {
   }
 
   function getVersion() public view returns (uint256) {
-    AggregatorV3Interface priceFeed = AggregatorV3Interface(
-      0xD4a33860578De61DBAbDc8BFdb98FD742fA7028e
-    );
-    return priceFeed.version();
+    return i_priceFeed.version();
   }
 
   modifier onlyOwner() {
