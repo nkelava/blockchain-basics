@@ -14,7 +14,6 @@ library PriceConverter {
     return uint256(answer * 10000000000);
   }
 
-  // 1000000000
   function getConversionRate(
     uint256 ethAmount
   ) internal view returns (uint256) {
