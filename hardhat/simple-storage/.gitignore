@@ -1,0 +1,10 @@
+.env
+node_modules
+coverage
+coverage.json
+
+# Hardhat files
+cache
+artifacts
+gas-report.txt
+coverage.json
