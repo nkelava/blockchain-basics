@@ -4,20 +4,33 @@ pragma solidity ^0.8.7;
 import "@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol";
 import "./PriceConverter.sol";
 
-error NotOwner();
+error FundMe__NotOwner();
 
 contract FundMe {
   using PriceConverter for uint256;
 
   address[] public funders;
-  address public i_owner;
+  address public immutable i_owner;
   AggregatorV3Interface public i_priceFeedAddress;
   uint256 public constant MINIMUM_USD = 50 * 10 ** 18;
   mapping(address => uint256) public addressToAmountFunded;
 
+  modifier onlyOwner() {
+    if (msg.sender != i_owner) revert FundMe__NotOwner();
+    _;
+  }
+
   constructor(address priceFeedAddress) {
     i_owner = msg.sender;
     i_priceFeedAddress = AggregatorV3Interface(priceFeedAddress);
+  }
+
+  receive() external payable {
+    fund();
+  }
+
+  fallback() external payable {
+    fund();
   }
 
   function fund() public payable {
@@ -33,11 +46,6 @@ contract FundMe {
     return i_priceFeedAddress.version();
   }
 
-  modifier onlyOwner() {
-    if (msg.sender != i_owner) revert NotOwner();
-    _;
-  }
-
   function withdraw() public onlyOwner {
     for (uint256 funderIndex = 0; funderIndex < funders.length; funderIndex++) {
       address funder = funders[funderIndex];
@@ -50,13 +58,5 @@ contract FundMe {
       value: address(this).balance
     }("");
     require(callSuccess, "Call failed");
-  }
-
-  fallback() external payable {
-    fund();
-  }
-
-  receive() external payable {
-    fund();
   }
 }
