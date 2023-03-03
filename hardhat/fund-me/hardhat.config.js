@@ -9,7 +9,6 @@ require("solidity-coverage");
 
 const GOERLI_RPC_URL = process.env.GOERLI_RPC_URL || "";
 const GOERLI_PRIVATE_KEY = process.env.GOERLI_PRIVATE_KEY || "0xKey";
-const LOCALHOST_RPC_URL = process.env.LOCALHOST_RPC_URL || "";
 const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY || "0xKey";
 const COINMARKETCAP_API_KEY = process.env.COINMARKETCAP_API_KEY || "0xKey";
 
@@ -25,7 +24,7 @@ module.exports = {
       url: GOERLI_RPC_URL,
       accounts: [GOERLI_PRIVATE_KEY],
       chainId: 5,
-      blockConfimation: 6,
+      blockConfimations: 6,
     },
   },
   solidity: {
