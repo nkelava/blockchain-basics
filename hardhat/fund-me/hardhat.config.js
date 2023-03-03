@@ -15,7 +15,7 @@ const COINMARKETCAP_API_KEY = process.env.COINMARKETCAP_API_KEY || "0xKey";
 
 module.exports = {
   solidity: "0.8.7",
-  defaultNetworks: "hardhat",
+  defaultNetwork: "hardhat",
   networks: {
     hardhat: {
       chainId: 31337,
@@ -31,10 +31,10 @@ module.exports = {
   solidity: {
     compilers: [
       {
-        version: "^0.8.7",
+        version: "0.8.7",
       },
       {
-        version: "^0.6.6",
+        version: "0.6.6",
       },
     ],
   },
@@ -48,5 +48,13 @@ module.exports = {
     outputFile: "gas-report.txt",
     noColors: true,
     // coinmarketcap: COINMARKETCAP_API_KEY,
+  },
+  namedAccounts: {
+    deployer: {
+      default: 0,
+    },
+    user: {
+      default: 1,
+    },
   },
 };
