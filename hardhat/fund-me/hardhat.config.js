@@ -1,11 +1,11 @@
-require("@nomicfoundation/hardhat-toolbox");
-require("dotenv").config();
 require("@nomiclabs/hardhat-etherscan");
+require("@nomiclabs/hardhat-waffle");
 require("hardhat-deploy");
 require("hardhat-gas-reporter");
 require("solidity-coverage");
+require("dotenv").config();
 
-/** @type import('hardhat/c onfig').HardhatUserConfig */
+/** @type import('hardhat/config').HardhatUserConfig */
 
 const GOERLI_RPC_URL = process.env.GOERLI_RPC_URL || "";
 const GOERLI_PRIVATE_KEY = process.env.GOERLI_PRIVATE_KEY || "0xKey";
@@ -42,7 +42,7 @@ module.exports = {
     // customChains: [], // uncomment this line if you are getting a TypeError: customChains is not iterable
   },
   gasReporter: {
-    enabled: false,
+    enabled: true,
     currency: "USD",
     outputFile: "gas-report.txt",
     noColors: true,
