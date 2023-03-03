@@ -3,9 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "hardhat-start": "pnpm exec hardhat deploy",
-    "goerli-start": "pnpm exec hardhat deploy --network goerli",
-    "localhost-start": "pnpm exec hardhat deploy --network localhost",
+    "deploy": "pnpm exec hardhat deploy",
+    "compile": "pnpm exec hardhat compile",
     "node-start": "pnpm exec hardhat node",
     "coverage": "pnpm exec hardhat coverage",
     "test": "pnpm exec hardhat test"
