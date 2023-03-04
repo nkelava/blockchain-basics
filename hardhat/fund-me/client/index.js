@@ -33,7 +33,9 @@ function listenForTransactionMine(transactionResponse, provider) {
 }
 
 async function fund() {
-  const amount = document.getElementById("amount-inp").value;
+  const amountInput = document.getElementById("amount-inp");
+  const amount = amountInput.value;
+  const placeholder = amountInput.placeholder;
   const ethAmount = ethers.utils.parseEther(amount);
 
   if (typeof window.ethereum !== "undefined") {
@@ -48,6 +50,7 @@ async function fund() {
       await listenForTransactionMine(transactionResponse, provider);
       alert(`Success! You funded ${ethers.utils.formatEther(ethAmount)} ETH.`);
       console.log("Transaction completed.");
+      amountInput.value = placeholder;
     } catch (error) {
       console.log(error.message);
     }
