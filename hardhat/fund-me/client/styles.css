@@ -26,6 +26,14 @@ button {
   padding: 10px 20px;
 }
 
+button:hover {
+  background: #b8c09d;
+}
+
+input:focus::placeholder {
+  color: transparent;
+}
+
 .form {
   background-color: #fefae0;
   border-radius: 10px;
