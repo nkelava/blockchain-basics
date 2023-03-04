@@ -2,12 +2,15 @@ import { ethers } from "./ethers-5.1.esm.min.js";
 import { abi, contractAddress } from "./consts.js";
 
 async function connect() {
+  if (connected) return;
+
   if (typeof window.ethereum !== "undefined") {
     try {
       console.log("Connecting to a wallet...");
       await window.ethereum.request({ method: "eth_requestAccounts" });
 
-      connectBtn.innerHTML = "Disconnect";
+      connected = true;
+      connectBtn.innerHTML = "Connected";
       console.log("Wallet connected...");
     } catch (error) {
       console.log(error);
@@ -30,7 +33,7 @@ function listenForTransactionMine(transactionResponse, provider) {
 }
 
 async function fund() {
-  const amount = document.getElementById("amount").value;
+  const amount = document.getElementById("amount-inp").value;
   const ethAmount = ethers.utils.parseEther(amount);
 
   if (typeof window.ethereum !== "undefined") {
@@ -43,6 +46,7 @@ async function fund() {
       const transactionResponse = await contract.fund({ value: ethAmount });
 
       await listenForTransactionMine(transactionResponse, provider);
+      alert(`Success! You funded ${ethers.utils.formatEther(ethAmount)} ETH.`);
       console.log("Transaction completed.");
     } catch (error) {
       console.log(error.message);
@@ -65,6 +69,7 @@ async function withdraw(ethAmount) {
       const transactionResponse = await contract.withdraw();
 
       await listenForTransactionMine(transactionResponse, provider);
+      alert("Success! You withdrew all the funds.");
       console.log("Withdraw completed.");
     } catch (error) {
       console.log(error.message);
@@ -81,7 +86,7 @@ async function getBalance(ethAmount) {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const balance = await provider.getBalance(contractAddress);
 
-    alert(`Contract balance is: ${ethers.utils.formatEther(balance)}`);
+    alert(`Contract balance is: ${ethers.utils.formatEther(balance)} ETH`);
   } else {
     alert(
       "Ooops, Metamask is not installed or connected!\nPlease make sure you have Metamask installed and connected."
@@ -89,10 +94,11 @@ async function getBalance(ethAmount) {
   }
 }
 
-const connectBtn = document.getElementById("connect");
-const balanceBtn = document.getElementById("balance");
-const fundBtn = document.getElementById("fund");
-const withdrawBtn = document.getElementById("withdraw");
+const connectBtn = document.getElementById("connect-btn");
+const balanceBtn = document.getElementById("balance-btn");
+const fundBtn = document.getElementById("fund-btn");
+const withdrawBtn = document.getElementById("withdraw-btn");
+let connected = false;
 
 connectBtn.onclick = connect;
 balanceBtn.onclick = getBalance;
