@@ -11,15 +11,19 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
     const { deployer } = await getNamedAccounts();
     log("Local network detected! Deploying mocks...");
 
-    await deploy("MockV3Aggregator", {
-      contract: "MockV3Aggregator",
-      from: deployer,
-      log: true,
-      args: [DECIMALS, INITIAL_ANSWER],
-    });
+    if (chainId === 31337) {
+      await deploy("MockV3Aggregator", {
+        contract: "MockV3Aggregator",
+        from: deployer,
+        log: true,
+        args: [DECIMALS, INITIAL_ANSWER],
+      });
 
-    log("Mocks deployed...");
-    log("--------------------------------------------------------------------");
+      log("Mocks deployed...");
+      log(
+        "--------------------------------------------------------------------"
+      );
+    }
   }
 };
 
