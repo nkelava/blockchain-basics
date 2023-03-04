@@ -8,7 +8,8 @@
     "compile": "pnpm exec hardhat compile",
     "node-start": "pnpm exec hardhat node",
     "coverage": "pnpm exec hardhat coverage",
-    "test": "pnpm exec hardhat test"
+    "test": "pnpm exec hardhat test",
+    "test-staging": "pnpm exec hardhat test --network goerli"
   },
   "dependencies": {
     "hardhat": "^2.13.0"
