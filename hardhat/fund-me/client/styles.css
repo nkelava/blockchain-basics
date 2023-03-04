@@ -1,0 +1,79 @@
+body {
+  background: #faedcd;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+input,
+button {
+  border: none;
+  border-radius: 5px;
+  font-size: 15px;
+  outline: none;
+  padding: 10px;
+}
+
+button {
+  font-weight: bold;
+  letter-spacing: 1.3px;
+  color: #d4a373;
+  background: #ccd5ae;
+  padding: 10px 20px;
+}
+
+.form {
+  background-color: #fefae0;
+  border-radius: 10px;
+  padding: 20px;
+  height: 310px;
+  width: 400px;
+  position: relative;
+}
+
+.header {
+  color: #ccd5ae;
+  text-align: center;
+  font-size: 22px;
+}
+
+.header h1 {
+  margin-bottom: 10px;
+}
+
+.separator {
+  border: 0;
+  background: #faedcd;
+  height: 2px;
+}
+
+.wallet {
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+.fund {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+
+.fund__input {
+  background: #faedcd;
+  color: #d4a373;
+  font-weight: bold;
+  text-align: center;
+  width: 60%;
+}
+
+.fund__button {
+  width: 30%;
+}
+
+.withdraw__button {
+  width: 100%;
+}

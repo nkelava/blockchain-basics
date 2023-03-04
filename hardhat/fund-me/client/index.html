@@ -1,23 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <link rel="stylesheet" href="styles.css" />
     <title>Fund Me</title>
   </head>
-  <style>
-    button,
-    input {
-      margin: 5px;
-    }
-  </style>
   <body>
-    <h1>Fund Me</h1>
-    <button id="connect">Connect Wallet</button>
-    <button id="balance">Balance</button>
-    <div>
-      <input id="amount" placeholder="Enter ETH amount..." />
-      <button id="fund">Fund</button>
+    <div class="container">
+      <div class="form">
+        <div class="header">
+          <h1>Fund Me</h1>
+        </div>
+        <hr class="separator" />
+        <div class="wallet">
+          <button id="connect-btn">Connect Wallet</button>
+          <button id="balance-btn">Check Balance</button>
+        </div>
+        <div class="fund">
+          <input
+            id="amount-inp"
+            class="fund__input"
+            placeholder="Enter ETH amount..."
+          />
+          <button id="fund-btn" class="fund__button">Fund</button>
+        </div>
+        <div class="withdraw">
+          <button id="withdraw-btn" class="withdraw__button">Withdraw</button>
+        </div>
+      </div>
     </div>
-    <button id="withdraw">Withdraw</button>
 
     <script src="./index.js" type="module"></script>
   </body>
