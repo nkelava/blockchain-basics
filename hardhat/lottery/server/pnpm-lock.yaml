@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@chainlink/contracts': ^0.6.1
   '@ensdomains/ens': ^0.6.2
   '@ensdomains/resolver': ^0.3.1
   '@nomiclabs/hardhat-ethers': npm:hardhat-deploy-ethers@0.3.0-beta.13
@@ -23,6 +24,7 @@ dependencies:
   dotenv: 16.0.3
 
 devDependencies:
+  '@chainlink/contracts': 0.6.1_ethers@6.0.8
   '@ensdomains/ens': 0.6.2
   '@ensdomains/resolver': 0.3.1
   '@nomiclabs/hardhat-ethers': /hardhat-deploy-ethers/0.3.0-beta.13_zntshz6utfw3vvv54broyxhgdi
@@ -67,6 +69,19 @@ packages:
       js-tokens: 4.0.0
     dev: true
 
+  /@chainlink/contracts/0.6.1_ethers@6.0.8:
+    resolution: {integrity: sha512-EuwijGexttw0UjfrW+HygwhQIrGAbqpf1ue28R55HhWMHBzphEH0PhWm8DQmFfj5OZNy8Io66N4L0nStkZ3QKQ==}
+    dependencies:
+      '@eth-optimism/contracts': 0.5.40_ethers@6.0.8
+      '@openzeppelin/contracts': 4.3.3
+      '@openzeppelin/contracts-upgradeable': 4.8.2
+      '@openzeppelin/contracts-v0.7': /@openzeppelin/contracts/3.4.2
+    transitivePeerDependencies:
+      - bufferutil
+      - ethers
+      - utf-8-validate
+    dev: true
+
   /@colors/colors/1.5.0:
     resolution: {integrity: sha512-ooWCrlZP11i8GImSjTHYHLkvFDP48nS4+204nGb1RiX/WXYHmJA2III9/e2DWVabCESdW7hBAEzHRqUn9OUVvQ==}
     engines: {node: '>=0.1.90'}
@@ -87,6 +102,44 @@ packages:
   /@ensdomains/resolver/0.3.1:
     resolution: {integrity: sha512-cXY7nomODddJ59pvkwkxp7StgKcv8Xb0OhQE/pCe80448T8tELPGEghf2thtjz4+4f+c7mt8XJQ04Y0Guc0lnA==}
     deprecated: Please use @ensdomains/ens-contracts
+    dev: true
+
+  /@eth-optimism/contracts/0.5.40_ethers@6.0.8:
+    resolution: {integrity: sha512-MrzV0nvsymfO/fursTB7m/KunkPsCndltVgfdHaT1Aj5Vi6R/doKIGGkOofHX+8B6VMZpuZosKCMQ5lQuqjt8w==}
+    peerDependencies:
+      ethers: ^5
+    dependencies:
+      '@eth-optimism/core-utils': 0.12.0
+      '@ethersproject/abstract-provider': 5.7.0
+      '@ethersproject/abstract-signer': 5.7.0
+      ethers: 6.0.8
+    transitivePeerDependencies:
+      - bufferutil
+      - utf-8-validate
+    dev: true
+
+  /@eth-optimism/core-utils/0.12.0:
+    resolution: {integrity: sha512-qW+7LZYCz7i8dRa7SRlUKIo1VBU8lvN0HeXCxJR+z+xtMzMQpPds20XJNCMclszxYQHkXY00fOT6GvFw9ZL6nw==}
+    dependencies:
+      '@ethersproject/abi': 5.7.0
+      '@ethersproject/abstract-provider': 5.7.0
+      '@ethersproject/address': 5.7.0
+      '@ethersproject/bignumber': 5.7.0
+      '@ethersproject/bytes': 5.7.0
+      '@ethersproject/constants': 5.7.0
+      '@ethersproject/contracts': 5.7.0
+      '@ethersproject/hash': 5.7.0
+      '@ethersproject/keccak256': 5.7.0
+      '@ethersproject/properties': 5.7.0
+      '@ethersproject/providers': 5.7.2
+      '@ethersproject/rlp': 5.7.0
+      '@ethersproject/transactions': 5.7.0
+      '@ethersproject/web': 5.7.1
+      bufio: 1.2.0
+      chai: 4.3.7
+    transitivePeerDependencies:
+      - bufferutil
+      - utf-8-validate
     dev: true
 
   /@ethereum-waffle/chai/4.0.10_c27wu7gna5r5uuil7eszfs346y:
@@ -966,6 +1019,18 @@ packages:
       hardhat: 2.13.0
     dev: true
 
+  /@openzeppelin/contracts-upgradeable/4.8.2:
+    resolution: {integrity: sha512-zIggnBwemUmmt9IS73qxi+tumALxCY4QEs3zLCII78k0Gfse2hAOdAkuAeLUzvWUpneMUfFE5sGHzEUSTvn4Ag==}
+    dev: true
+
+  /@openzeppelin/contracts/3.4.2:
+    resolution: {integrity: sha512-z0zMCjyhhp4y7XKAcDAi3Vgms4T2PstwBdahiO0+9NaGICQKjynK3wduSRplTgk4LXmoO1yfDGO5RbjKYxtuxA==}
+    dev: true
+
+  /@openzeppelin/contracts/4.3.3:
+    resolution: {integrity: sha512-tDBopO1c98Yk7Cv/PZlHqrvtVjlgK5R4J6jxLwoO7qxK4xqOiZG+zSkIvGFpPZ0ikc3QOED3plgdqjgNTnBc7g==}
+    dev: true
+
   /@resolver-engine/core/0.3.3:
     resolution: {integrity: sha512-eB8nEbKDJJBi5p5SrvrvILn4a0h42bKtbCTri3ZxCGt6UvoQyp7HnGOfki944bUjBSHKK3RvgfViHn+kqdXtnQ==}
     dependencies:
@@ -1731,6 +1796,11 @@ packages:
       node-gyp-build: 4.6.0
     dev: true
     optional: true
+
+  /bufio/1.2.0:
+    resolution: {integrity: sha512-UlFk8z/PwdhYQTXSQQagwGAdtRI83gib2n4uy4rQnenxUM2yQi8lBDzF230BNk+3wAoZDxYRoBwVVUPgHa9MCA==}
+    engines: {node: '>=8.0.0'}
+    dev: true
 
   /busboy/1.6.0:
     resolution: {integrity: sha512-8SFQbg/0hQ9xy3UNTB0YEnsNBbWfhf7RtnzpL7TkBiTBRfrQ9Fxcnz7VJsleJpyp6rVLvXiuORqjlHi5q+PYuA==}
