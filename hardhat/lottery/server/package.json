@@ -1,27 +1,27 @@
 {
   "name": "lottery",
   "version": "1.0.0",
-  "scripts": {},
+  "author": "Nikola Kelava",
   "devDependencies": {
-    "@chainlink/contracts": "^0.6.1",
-    "@ensdomains/ens": "^0.6.2",
-    "@ensdomains/resolver": "^0.3.1",
+    "@ethersproject/abi": "^5.7.0",
+    "@ethersproject/providers": "^5.7.2",
+    "@nomicfoundation/hardhat-network-helpers": "^1.0.8",
     "@nomiclabs/hardhat-ethers": "npm:hardhat-deploy-ethers@0.3.0-beta.13",
-    "@nomiclabs/hardhat-etherscan": "^3.1.7",
+    "@nomiclabs/hardhat-etherscan": "^3.0.0",
     "@nomiclabs/hardhat-waffle": "^2.0.5",
-    "chai": "^4.3.7",
+    "chai": "^4.2.0",
     "ethereum-waffle": "^4.0.10",
-    "ethers": "^6.0.8",
+    "ethers": "^5.4.7",
     "hardhat": "^2.13.0",
     "hardhat-contract-sizer": "^2.8.0",
     "hardhat-deploy": "^0.11.24",
-    "hardhat-gas-reporter": "^1.0.9",
+    "hardhat-gas-reporter": "^1.0.8",
     "prettier": "^2.8.4",
     "prettier-plugin-solidity": "^1.1.3",
-    "solhint": "^3.4.0",
-    "solidity-coverage": "^0.8.2"
+    "solidity-coverage": "^0.8.0"
   },
   "dependencies": {
+    "@chainlink/contracts": "^0.6.1",
     "dotenv": "^16.0.3"
   }
 }
