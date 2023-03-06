@@ -44,9 +44,9 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
     from: deployer,
     args: [
       vrfCoordinatorV2Address,
+      subscriptionId,
       entranceFee,
       gasLane,
-      subscriptionId,
       callbackGasLimit,
       interval,
     ],

@@ -20,18 +20,18 @@ contract Raffle is VRFConsumerBaseV2, KeeperCompatibleInterface {
     CALCULATING
   }
 
-  uint256 private immutable i_entranceFee;
   address private s_recentWinner;
   address payable[] private s_players;
-  bytes32 private immutable i_gasLane;
-  uint64 private immutable i_subscriptionId;
-  uint32 private immutable i_callbackGasLimit;
-  uint16 private constant REQUEST_CONFIRMATIONS = 3;
-  uint32 private constant NUM_WORDS = 1;
-  VRFCoordinatorV2Interface private immutable i_vrfCoordinator;
   RaffleState private s_raffleState;
   uint256 private s_lastTimestamp;
+  VRFCoordinatorV2Interface private immutable i_vrfCoordinator;
+  uint64 private immutable i_subscriptionId;
+  uint256 private immutable i_entranceFee;
+  bytes32 private immutable i_gasLane;
+  uint32 private immutable i_callbackGasLimit;
   uint256 private immutable i_interval;
+  uint32 private constant NUM_WORDS = 1;
+  uint16 private constant REQUEST_CONFIRMATIONS = 3;
 
   event RaffleEnter(address indexed player);
   event RequestRaffleWinner(uint256 indexed requestId);
@@ -39,16 +39,16 @@ contract Raffle is VRFConsumerBaseV2, KeeperCompatibleInterface {
 
   constructor(
     address vrfCoordinatorV2,
+    uint64 subscriptionId,
     uint256 entranceFee,
     bytes32 gasLane,
-    uint64 subscriptionId,
     uint32 callbackGasLimit,
     uint256 interval
   ) VRFConsumerBaseV2(vrfCoordinatorV2) {
     i_vrfCoordinator = VRFCoordinatorV2Interface(vrfCoordinatorV2);
+    i_subscriptionId = subscriptionId;
     i_entranceFee = entranceFee;
     i_gasLane = gasLane;
-    i_subscriptionId = subscriptionId;
     i_callbackGasLimit = callbackGasLimit;
     i_interval = interval;
     s_raffleState = RaffleState.OPEN;
@@ -116,35 +116,39 @@ contract Raffle is VRFConsumerBaseV2, KeeperCompatibleInterface {
     emit WinnerPicked(recentWinner);
   }
 
-  function getEntranceFee() public view returns (uint256) {
-    return i_entranceFee;
+  function getRecentWinner() public view returns (address) {
+    return s_recentWinner;
   }
 
   function getPlayer(uint256 index) public view returns (address) {
     return s_players[index];
   }
 
-  function getRecentWinner() public view returns (address) {
-    return s_recentWinner;
+  function getNumberOfPlayers() public view returns (uint256) {
+    return s_players.length;
   }
 
   function getRaffleState() public view returns (RaffleState) {
     return s_raffleState;
   }
 
-  function getNumWords() public pure returns (uint256) {
-    return NUM_WORDS;
-  }
-
-  function getNumberOfPlayers() public view returns (uint256) {
-    return s_players.length;
-  }
-
-  function getLatestTimestamp() public view returns (uint256) {
+  function getLastTimestamp() public view returns (uint256) {
     return s_lastTimestamp;
+  }
+
+  function getEntranceFee() public view returns (uint256) {
+    return i_entranceFee;
+  }
+
+  function getInterval() public view returns (uint256) {
+    return i_interval;
   }
 
   function getRequestConfirmations() public pure returns (uint256) {
     return REQUEST_CONFIRMATIONS;
+  }
+
+  function getNumWords() public pure returns (uint256) {
+    return NUM_WORDS;
   }
 }
