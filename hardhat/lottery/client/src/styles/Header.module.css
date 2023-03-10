@@ -6,7 +6,9 @@
 }
 
 .header__brand {
-  font-size: 20px;
+  color: #2099dd;
+  text-decoration: overline black;
+  font-size: 22px;
   font-weight: bold;
-  padding-left: 20px;
+  padding: 0 20px;
 }

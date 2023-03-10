@@ -1,0 +1,20 @@
+.raffle {
+  text-align: center;
+}
+
+.raffle__enterBtn {
+  background-color: #f2f6ff;
+  border: 2px solid transparent;
+  border-radius: 20px;
+  color: #2099dd;
+  padding: 10px 30px;
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 20px;
+  outline: none;
+}
+
+.raffle__enterBtn:hover {
+  border: 2px solid #c1d8e7;
+  transition-duration: 0.5s;
+}
