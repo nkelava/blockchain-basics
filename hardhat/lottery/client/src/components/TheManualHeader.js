@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useMoralis } from "react-moralis";
 
-export default function ManualHeader() {
+export default function TheManualHeader() {
   const {
     enableWeb3,
     isWeb3Enabled,
