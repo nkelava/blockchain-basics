@@ -2,15 +2,29 @@
   text-align: center;
 }
 
+.raffle__greeting {
+  margin: 30px 0;
+}
+
+.raffle__recentWinner,
+.raffle__info {
+  margin: 20px 0;
+}
+
 .raffle__inputContainer {
-  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
 }
 
 .raffle__input {
   padding: 12px 10px;
   border: 2px solid #2099dd;
   border-radius: 15px 0 0 15px;
-  font-size: 14px;
+  font-size: 16px;
+  height: 50px;
+  width: 250px;
 }
 
 .raffle__enterBtn {
@@ -21,11 +35,35 @@
   padding: 10px 20px;
   font-size: 17px;
   font-weight: bold;
-  margin-top: 20px;
   outline: none;
+  height: 50px;
+  width: 150px;
 }
 
 .raffle__enterBtn:hover {
   border: 2px solid #2099dd;
   transition-duration: 0.5s;
+}
+
+.raffle__enterBtn:disabled {
+  border: 2px solid transparent;
+}
+
+.raffle__spinner {
+  width: 22px;
+  height: 22px;
+  border: 3px solid #2099dd;
+  border-bottom-color: transparent;
+  display: inline-block;
+  border-radius: 50%;
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
