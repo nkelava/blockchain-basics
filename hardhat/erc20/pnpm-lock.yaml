@@ -4,7 +4,7 @@ specifiers:
   '@nomiclabs/hardhat-ethers': npm:hardhat-deploy-ethers@^0.3.0-beta.13
   '@nomiclabs/hardhat-etherscan': ^3.0.0
   '@nomiclabs/hardhat-waffle': ^2.0.1
-  '@openzeppelin/contracts': ^4.5.0
+  '@openzeppelin/contracts': ^4.8.2
   babel-eslint: ^10.1.0
   chai: ^4.3.4
   dotenv: ^10.0.0
@@ -20,7 +20,6 @@ specifiers:
   solidity-coverage: ^0.7.13
 
 dependencies:
-  '@openzeppelin/contracts': 4.8.2
   babel-eslint: 10.1.0
   dotenv: 10.0.0
 
@@ -28,6 +27,7 @@ devDependencies:
   '@nomiclabs/hardhat-ethers': /hardhat-deploy-ethers/0.3.0-beta.13_wknqauzjtp3mhprkntsmqpccee
   '@nomiclabs/hardhat-etherscan': 3.1.7_hardhat@2.13.0
   '@nomiclabs/hardhat-waffle': 2.0.5_hshfovn7e6n27gvjzytvvmwtxq
+  '@openzeppelin/contracts': 4.8.2
   chai: 4.3.7
   ethereum-waffle: 3.4.4
   ethers: 5.7.2
@@ -953,7 +953,7 @@ packages:
 
   /@openzeppelin/contracts/4.8.2:
     resolution: {integrity: sha512-kEUOgPQszC0fSYWpbh2kT94ltOJwj1qfT2DWo+zVttmGmf97JZ99LspePNaeeaLhCImaHVeBbjaQFZQn7+Zc5g==}
-    dev: false
+    dev: true
 
   /@resolver-engine/core/0.3.3:
     resolution: {integrity: sha512-eB8nEbKDJJBi5p5SrvrvILn4a0h42bKtbCTri3ZxCGt6UvoQyp7HnGOfki944bUjBSHKK3RvgfViHn+kqdXtnQ==}
