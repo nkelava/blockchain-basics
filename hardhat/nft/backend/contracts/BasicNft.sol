@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.7;
+pragma solidity ^0.8.8;
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 
@@ -12,11 +12,9 @@ contract BasicNft is ERC721 {
     s_tokenCounter = 0;
   }
 
-  function mintNft() publiic returns (uint256) {
+  function mintNft() public {
     _safeMint(msg.sender, s_tokenCounter);
     s_tokenCounter += 1;
-
-    return s_tokenCounter;
   }
 
   function tokenURI(uint256 /* tokenId */) public view override returns (string memory) {
