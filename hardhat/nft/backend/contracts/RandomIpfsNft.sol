@@ -27,17 +27,20 @@ contract RandomIpfsNft is VRFConsumerBaseV2, ERC721URIStorage {
 
   uint256 public s_tokenCounter;
   uint256 internal constant MAX_CHANCE_VALUE = 100;
+  string[] internal s_dogTokenUris;
 
   constructor(
     address vrfCoordinatorV2,
     uint64 subscriptionId,
     bytes32 gasLane,
-    uint32 callbackGasLimit
+    uint32 callbackGasLimit,
+    string[3] memory dogTokenUris
   ) VRFConsumerBaseV2(vrfCoordinatorV2) ERC721("Random IPFS NFT", "RIN") {
     i_vrfCoordinator = VRFCoordinatorV2Interface(vrfCoordinatorV2);
     i_subscriptionId = subscriptionId;
     i_gasLane = gasLane;
     i_callbackGasLimit = callbackGasLimit;
+    s_dogTokenUris = dogTokenUris;
   }
 
   function requestNft() public returns (uint256 requestId) {
@@ -59,6 +62,10 @@ contract RandomIpfsNft is VRFConsumerBaseV2, ERC721URIStorage {
     Breed dogBreed = getBreedFromModdedRng(moddedRng);
 
     _safeMint(dogOwner, newTokenId);
+    _setTokenURI(newTokenId, s_dogTokenUris[uint256(dogBreed)]);
+
+    // setTokenURI isn't the most gas efficient operation
+    // It is used because it has most customization
   }
 
   function getBreedFromModdedRng(uint256 moddedRng) public pure returns (Breed) {
