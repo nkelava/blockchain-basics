@@ -32,6 +32,9 @@ contract RandomIpfsNft is VRFConsumerBaseV2, ERC721URIStorage, Ownable {
   string[] internal s_dogTokenUris;
   uint256 internal immutable i_mintFee;
 
+  event NftRequested(uint256 indexed requestId, address requester);
+  event NftMinted(Breed dogBreed, address minter);
+
   constructor(
     address vrfCoordinatorV2,
     uint64 subscriptionId,
@@ -62,6 +65,7 @@ contract RandomIpfsNft is VRFConsumerBaseV2, ERC721URIStorage, Ownable {
     );
 
     s_requestIdToSender[requestId] = msg.sender;
+    emit NftRequested(requestId, msg.sender);
   }
 
   function fulfillRandomWords(uint256 requestId, uint256[] memory randomWords) internal override {
@@ -74,6 +78,8 @@ contract RandomIpfsNft is VRFConsumerBaseV2, ERC721URIStorage, Ownable {
     // setTokenURI isn't the most gas efficient operation
     // It is used because it has most customization
     _setTokenURI(newTokenId, s_dogTokenUris[uint256(dogBreed)]);
+
+    emit NftMinted(dogBreed, dogOwner);
   }
 
   function getBreedFromModdedRng(uint256 moddedRng) public pure returns (Breed) {
