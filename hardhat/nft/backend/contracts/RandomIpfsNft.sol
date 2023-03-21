@@ -9,6 +9,7 @@ import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 
 error RandomIpfsNft__RangeOutOfBounds();
 error RandomIpfsNft__NeedMoreETHSent();
+error RandomIpfsNft__AlreadyInitialized();
 error RandomIpfsNft__TransferFailed();
 
 contract RandomIpfsNft is VRFConsumerBaseV2, ERC721URIStorage, Ownable {
@@ -31,6 +32,7 @@ contract RandomIpfsNft is VRFConsumerBaseV2, ERC721URIStorage, Ownable {
   uint256 internal constant MAX_CHANCE_VALUE = 100;
   string[] internal s_dogTokenUris;
   uint256 internal immutable i_mintFee;
+  bool private s_initialized;
 
   event NftRequested(uint256 indexed requestId, address requester);
   event NftMinted(Breed dogBreed, address minter);
@@ -48,6 +50,7 @@ contract RandomIpfsNft is VRFConsumerBaseV2, ERC721URIStorage, Ownable {
     i_gasLane = gasLane;
     i_callbackGasLimit = callbackGasLimit;
     s_dogTokenUris = dogTokenUris;
+    _initializeContract(dogTokenUris);
     i_mintFee = mintFee;
   }
 
@@ -81,6 +84,12 @@ contract RandomIpfsNft is VRFConsumerBaseV2, ERC721URIStorage, Ownable {
     _setTokenURI(newTokenId, s_dogTokenUris[uint256(dogBreed)]);
 
     emit NftMinted(dogBreed, dogOwner);
+  }
+
+  function _initializeContract(string[3] memory dogTokenUris) private {
+    if (s_initialized) revert RandomIpfsNft__AlreadyInitialized();
+    s_dogTokenUris = dogTokenUris;
+    s_initialized = true;
   }
 
   function getBreedFromModdedRng(uint256 moddedRng) public pure returns (Breed) {
@@ -119,5 +128,9 @@ contract RandomIpfsNft is VRFConsumerBaseV2, ERC721URIStorage, Ownable {
 
   function getTokenCounter() public view returns (uint256) {
     return s_tokenCounter;
+  }
+
+  function getInitialized() public view returns (bool) {
+    return s_initialized;
   }
 }
