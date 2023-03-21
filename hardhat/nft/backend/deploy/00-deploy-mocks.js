@@ -26,7 +26,7 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
 
     log("Mocks Deployed!");
     log(
-      "You are deploying to a local network, you'll need a local network running to interact. Please run `yarn hardhat console --network localhost` to interact with the deployed smart contracts!\n"
+      "You are deploying to a local network, you'll need a local network running to interact. Please run `yarn hardhat console --network localhost` to interact with the deployed smart contracts!\n\n"
     );
   }
 };
