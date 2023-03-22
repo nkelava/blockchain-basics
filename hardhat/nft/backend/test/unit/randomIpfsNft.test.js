@@ -102,7 +102,8 @@ const { developmentChains } = require("../../helper-hardhat-config");
           const expectedValue = await randomIpfsNft.getBreedFromModdedRng(77);
           assert.equal(2, expectedValue);
         });
-        it("should revert if moddedRng > 99", async function () {
+
+        it("should revert if moddedRng > 99", async () => {
           await expect(randomIpfsNft.getBreedFromModdedRng(100)).to.be.revertedWith(
             "RandomIpfsNft__RangeOutOfBounds"
           );
