@@ -33,7 +33,7 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
     subscriptionId = networkConfig[chainId].subscriptionId;
   }
 
-  const args = [
+  arguments = [
     vrfCoordinatorV2Address,
     subscriptionId,
     networkConfig[chainId].gasLane,
@@ -44,7 +44,7 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
 
   const randomIpfsNft = await deploy("RandomIpfsNft", {
     from: deployer,
-    args: args,
+    args: arguments,
     log: true,
     waitConfirmations: network.config.blockConfirmations || 1,
   });
@@ -55,7 +55,7 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
 
   if (!developmentChains.includes(network.name) && process.env.ETHERSCAN_API_KEY) {
     log("Verifying...");
-    await verify(randomIpfsNft.address, args);
+    await verify(randomIpfsNft.address, arguments);
   }
 };
 
