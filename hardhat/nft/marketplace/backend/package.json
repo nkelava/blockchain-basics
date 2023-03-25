@@ -6,7 +6,10 @@
     "lint": "solhint 'contracts/*.sol'",
     "lint:fix": "solhint 'contracts/**/*.sol' --fix",
     "format": "prettier --write .",
-    "coverage": "hardhat coverage"
+    "coverage": "pnpm exec hardhat coverage",
+    "compile": "pnpm exec hardhat compile",
+    "deploy": "pnpm exec hardhat deploy",
+    "test": "pnpm exec hardhat test"
   },
     "devDependencies": {
     "@chainlink/contracts": "^0.4.0",
