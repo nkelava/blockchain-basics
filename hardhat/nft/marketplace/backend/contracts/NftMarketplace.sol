@@ -10,6 +10,8 @@ error NotApprovedForMarketplace();
 error AlreadyListed(address nftAddress, uint256 tokenId);
 error NotListed(address nftAddress, uint256 tokenId);
 error NotOwner();
+error InsufficientProceeds();
+error TransferFailed();
 
 contract NftMarketplace is ReentrancyGuard {
   struct Listing {
@@ -114,5 +116,16 @@ contract NftMarketplace is ReentrancyGuard {
   ) external isOwner(nftAddress, tokenId, msg.sender) isListed(nftAddress, tokenId) {
     s_listings[nftAddress][tokenId].price = newPrice;
     emit ItemListed(msg.sender, nftAddress, tokenId, newPrice);
+  }
+
+  function withdrawProceeds() external {
+    uint256 proceeds = s_proceeds[msg.sender];
+
+    if(proceeds <= 0) revert InsufficientProceeds();
+
+    s_proceeds[msg.sender] = 0;
+    (bool success, ) = payable(msg.sender).call{ value: proceeds }("");
+
+    if(!success) revert TransferFailed();
   }
 }
