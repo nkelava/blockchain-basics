@@ -33,11 +33,7 @@ contract NftMarketplace is ReentrancyGuard {
     uint256 price
   );
 
-  event ItemCanceled(
-    address indexed seller,
-    address indexed nftAddress,
-    uint256 indexed tokenId
-  );
+  event ItemCanceled(address indexed seller, address indexed nftAddress, uint256 indexed tokenId);
 
   modifier notListed(address nftAddress, uint256 tokenId) {
     Listing memory listing = s_listings[nftAddress][tokenId];
@@ -121,11 +117,21 @@ contract NftMarketplace is ReentrancyGuard {
   function withdrawProceeds() external {
     uint256 proceeds = s_proceeds[msg.sender];
 
-    if(proceeds <= 0) revert InsufficientProceeds();
+    if (proceeds <= 0) revert InsufficientProceeds();
 
     s_proceeds[msg.sender] = 0;
     (bool success, ) = payable(msg.sender).call{ value: proceeds }("");
 
-    if(!success) revert TransferFailed();
+    if (!success) revert TransferFailed();
   }
+
+  function getListing(address nftAddress, uint256 tokenId) external view returns (Listing memory) {
+    return s_listings[nftAddress][tokenId];
+  }
+
+  function getProceeds(address seller) external view returns (uint256) {
+    return s_proceeds[seller];
+  }
+
+  
 }
