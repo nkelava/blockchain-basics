@@ -1,5 +1,9 @@
 .encryptedKey.json
 
+# vscode
+.vscode
+
+
 # dependencies
 /node_modules
 /.pnp
@@ -91,3 +95,6 @@ front-end-typescript/.next
 front-end-typescript/node_modules
 front-end-typescript/graph-nft-marketplace/node_modules
 typechain-types
+
+gas-report.txt
+
