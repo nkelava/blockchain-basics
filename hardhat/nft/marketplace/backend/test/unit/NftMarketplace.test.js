@@ -50,6 +50,12 @@ const { developmentChains } = require("../../helper-hardhat-config");
           ).to.be.revertedWith("NotOwner");
         });
 
+        it("reverts if price is equal to 0", async () => {
+          await expect(
+            nftMarketplace.listItem(basicNft.address, TOKEN_ID, ethers.utils.parseEther("0"))
+          ).to.be.revertedWith("PriceMustBeAboveZero");
+        });
+
         it("needs approvals to list item", async () => {
           await basicNft.approve(ethers.constants.AddressZero, TOKEN_ID);
           await expect(
